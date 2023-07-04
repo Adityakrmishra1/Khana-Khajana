@@ -1,0 +1,38 @@
+{
+  "name": "khana_khajana",
+  "version": "1.0.0",
+  "description": "A food Ordering App.",
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adityakrmishra1/Khana-Khajana.git"
+  },
+  "keywords": [
+    "Khana",
+    "khajana",
+    "food",
+    "app",
+    "ordering"
+  ],
+  "author": "Aditya Kumar Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adityakrmishra1/Khana-Khajana/issues"
+  },
+  "homepage": "https://github.com/Adityakrmishra1/Khana-Khajana#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "process": "^0.11.10",
+    "parcel": "^2.9.3"
+  }
+}
