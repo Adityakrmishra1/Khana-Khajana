@@ -45,9 +45,22 @@
 }
 
 .res-item {
-	width: 300px;
-	height: 300px;
-	padding: 10px;
-	border: solid 1px firebrick;
+	width: 135px;
+	/* height: wrap-content; */
+	padding: 5px;
+	/* border: solid 1px black; */
+	/* display: flex; */
+	flex-wrap: wrap;
+	/* flex-direction: column; */
+	background-color: aqua;
+}
+
+.res-item:hover {
+	border: 1px solid black;
+}
+
+.res-item > * {
+	/* flex: 1; */
+	/* flex-basis: 0px; */
 }
 
