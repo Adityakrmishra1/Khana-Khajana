@@ -37,15 +37,15 @@
 }
 
 .res-container {
-	margin: 1px;
-	justify-content: space-between;
+	margin: 20px;
 	flex-wrap: wrap;
 	display: flex;
 	gap : 2rem;
+	
 }
 
 .res-item {
-	width: 135px;
+	width: 200px;
 	/* height: wrap-content; */
 	padding: 5px;
 	/* border: solid 1px black; */
@@ -58,9 +58,7 @@
 .res-item:hover {
 	border: 1px solid black;
 }
-
-.res-item > * {
-	/* flex: 1; */
-	/* flex-basis: 0px; */
+.res-item > img {
+	width: 100%;
 }
 

@@ -2,8 +2,9 @@ import react from 'react';
 import ReactDOM from 'react-dom/client';
 
 // getting Components...
-import Header from './components/Header';
-import Body from './components/Body';
+import Header from './src/components/Header';
+import Body from './src/components/Body';
+
 
 let AppLayoutContainer = function () {
 	return (
