@@ -7,8 +7,8 @@ import ShimmerUiContainer from "./ShimmerUi";
 let Body = function () {
   console.log(useState);
   let [restaurantLists, setRestaurantLists] = useState([]);
+  let [filteredRestaurantLists, setFilteredRestaurantLists] = useState([]);
   let [searchText, setSearchText] = useState("");
-
   console.log("rendered ");
 
   async function fetchData() {
@@ -22,6 +22,7 @@ let Body = function () {
       );
       cardData = cardData[0]?.data?.data?.cards;
       setRestaurantLists(cardData);
+      setFilteredRestaurantLists(cardData);
     } catch (error) {
       console.log("error while fetching the data..." + error);
       setRestaurantLists([]);
@@ -55,11 +56,15 @@ let Body = function () {
           <button
             className="serch-btn"
             onClick={(e) => {
-              restaurantLists.filter((restaurants) => {
-                console.log(restaurants);
-                return restaurants.data.name.toLowerCase().includes(searchText);
+              e.preventDefault();
+              console.log(restaurantLists);
+              const filterdResturant = restaurantLists.filter((res) => {
+                console.log(res);
+                return res?.data?.name
+                  ?.toLowerCase()
+                  ?.includes(searchText?.toLowerCase());
               });
-              setRestaurantLists(restaurantLists);
+              setFilteredRestaurantLists(filterdResturant);
             }}
           >
             Search
@@ -67,7 +72,7 @@ let Body = function () {
         </div>
       </div>
       <div className="res-container">
-        {restaurantLists.map((item) => {
+        {filteredRestaurantLists.map((item) => {
           console.log(item);
           return <RestaurantsItem key={item.id} data={item} />;
         })}
