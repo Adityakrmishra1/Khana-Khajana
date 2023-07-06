@@ -2,6 +2,7 @@ import RestaurantsItem from "./RestaurantsItem";
 import Search from "./Search";
 import { useEffect, useState } from "react";
 import { LIVE_DATA_URL } from "../../utils/constants";
+import ShimmerUiContainer from "./ShimmerUi";
 
 let Body = function () {
 	console.log(useState)
@@ -12,7 +13,9 @@ let Body = function () {
 			let data = await fetch(LIVE_DATA_URL);
 			let json = await data.json();
 			console.log(json);
-			let cardData = json?.data?.cards[2]?.data?.data?.cards;
+			let cardData = json?.data?.cards;
+			cardData = cardData.filter((card) => card.cardType === "seeAllRestaurants");
+			cardData = cardData[0]?.data?.data?.cards;
 			setRestaurantLists(cardData)
 		}
 		catch (error) {
@@ -24,6 +27,10 @@ let Body = function () {
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+	if (!restaurantLists || restaurantLists.length === 0) {
+		return <ShimmerUiContainer />;
+	}
 
 	return (
 		<div className="body">
