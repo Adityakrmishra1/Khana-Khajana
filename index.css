@@ -139,3 +139,26 @@ body{
 .res-item-quick-view-title{
 	margin: 0 auto;
 }
+
+.filters{
+	margin: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.top-rated-res-container{
+	padding: 10px;
+	margin: auto;
+	width: 20%;
+}
+.top-rated-res-btn {
+	width: 100%;
+	background-color: #ffffff;
+	
+}
+.top-rated-res-btn:hover{
+	cursor: pointer;
+	background-color: #d8d4d4;
+}
+.filters > * {
+	margin: 0 auto;
+}

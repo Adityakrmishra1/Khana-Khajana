@@ -28,24 +28,28 @@ let Body = function () {
 		fetchData();
 	}, []);
 
-	if (!restaurantLists || restaurantLists.length === 0) {
-		return <ShimmerUiContainer />;
-	}
+	return (!restaurantLists || restaurantLists.length === 0) ?
+		(<ShimmerUiContainer />) : (
+			<div className="body">
+				<div className="filters">
+					<div className="top-rated-res-container">
+						<button className="top-rated-res-btn" onClick={() => { }} >Top Rated Restaurants</button>
+					</div>
+					<div className="search-container">
+						<input type="text" className="search-box" placeholder="Search Restaurants" />
+					</div>
+				</div>
+				<div className="res-container" >
+					{
+						restaurantLists.map((item) => {
+							console.log(item);
+							return <RestaurantsItem key={item.id} data={item} />
+						})
+					}
 
-	return (
-		<div className="body">
-			<Search />
-			<div className="res-container" >
-				{
-					restaurantLists.map((item) => {
-						console.log(item);
-						return <RestaurantsItem key={item.id} data={item} />
-					})
-				}
-
-			</div>
-		</div>
-	);
+				</div>
+			</div >
+		);
 }
 
 export default Body;
