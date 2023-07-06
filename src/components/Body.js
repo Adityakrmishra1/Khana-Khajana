@@ -5,51 +5,75 @@ import { LIVE_DATA_URL } from "../../utils/constants";
 import ShimmerUiContainer from "./ShimmerUi";
 
 let Body = function () {
-	console.log(useState)
-	let [restaurantLists, setRestaurantLists] = useState([]);
+  console.log(useState);
+  let [restaurantLists, setRestaurantLists] = useState([]);
+  let [searchText, setSearchText] = useState("");
 
-	async function fetchData() {
-		try {
-			let data = await fetch(LIVE_DATA_URL);
-			let json = await data.json();
-			console.log(json);
-			let cardData = json?.data?.cards;
-			cardData = cardData.filter((card) => card.cardType === "seeAllRestaurants");
-			cardData = cardData[0]?.data?.data?.cards;
-			setRestaurantLists(cardData)
-		}
-		catch (error) {
-			console.log("error while fetching the data..." + error);
-			setRestaurantLists([]);
-		}
-	}
-	// this will be called after the rendering the of component is done.
-	useEffect(() => {
-		fetchData();
-	}, []);
+  console.log("rendered ");
 
-	return (!restaurantLists || restaurantLists.length === 0) ?
-		(<ShimmerUiContainer />) : (
-			<div className="body">
-				<div className="filters">
-					<div className="top-rated-res-container">
-						<button className="top-rated-res-btn" onClick={() => { }} >Top Rated Restaurants</button>
-					</div>
-					<div className="search-container">
-						<input type="text" className="search-box" placeholder="Search Restaurants" />
-					</div>
-				</div>
-				<div className="res-container" >
-					{
-						restaurantLists.map((item) => {
-							console.log(item);
-							return <RestaurantsItem key={item.id} data={item} />
-						})
-					}
+  async function fetchData() {
+    try {
+      let data = await fetch(LIVE_DATA_URL);
+      let json = await data.json();
+      console.log(json);
+      let cardData = json?.data?.cards;
+      cardData = cardData.filter(
+        (card) => card.cardType === "seeAllRestaurants"
+      );
+      cardData = cardData[0]?.data?.data?.cards;
+      setRestaurantLists(cardData);
+    } catch (error) {
+      console.log("error while fetching the data..." + error);
+      setRestaurantLists([]);
+    }
+  }
+  // this will be called after the rendering the of component is done.
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-				</div>
-			</div >
-		);
-}
+  return !restaurantLists || restaurantLists.length === 0 ? (
+    <ShimmerUiContainer />
+  ) : (
+    <div className="body">
+      <div className="filters">
+        <div className="top-rated-res-container">
+          <button className="top-rated-res-btn" onClick={() => {}}>
+            Top Rated Restaurants
+          </button>
+        </div>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search Restaurants"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="serch-btn"
+            onClick={(e) => {
+              restaurantLists.filter((restaurants) => {
+                console.log(restaurants);
+                return restaurants.data.name.toLowerCase().includes(searchText);
+              });
+              setRestaurantLists(restaurantLists);
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      <div className="res-container">
+        {restaurantLists.map((item) => {
+          console.log(item);
+          return <RestaurantsItem key={item.id} data={item} />;
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default Body;
