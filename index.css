@@ -160,3 +160,56 @@ body {
 .filters > * {
   margin: 0 auto;
 }
+
+.res-menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.res-menu-body {
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  flex-direction: column;
+}
+
+/* .res-menu-body > * {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+} */
+
+/* .res-menu-body-info-container {
+  width: 80%;
+  height: 200px;
+  background-color: #f7f7fa;
+} */
+
+.res-menu-body-info-container > ul {
+  list-style: none;
+  font-family: sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+.res-menu-item-container {
+  width: 100%;
+  height: 200px;
+  gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.res-menu-item-container > img {
+  width: 25%;
+  height: 60%;
+}
+
+.res-menu-item-info-name {
+  font: bold;
+  font-weight: 1000;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 // getting Components...
 import Header from "./src/components/Header";
@@ -8,12 +8,13 @@ import Body from "./src/components/Body";
 import About from "./src/components/About";
 import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
+import RestaurantMenu from "./src/components/RestaurantMenu";
 
 let AppLayoutContainer = function () {
   return (
     <div className="appContainer">
       <Header />
-      <Body />
+      <Outlet />
     </div>
   );
 };
@@ -22,21 +23,24 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayoutContainer />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/contact",
-    element: <ContactUs />,
-    errorElement: <Error />,
-  },
-  {
-    path: "*",
-    element: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
+      },
+    ],
     errorElement: <Error />,
   },
 ]);
