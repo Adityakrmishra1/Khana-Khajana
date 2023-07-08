@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { RESTAURANT_MENU_URL } from "../../utils/constants";
+import { Link, useParams } from "react-router-dom";
 
+import { RESTAURANT_MENU_URL } from "../../utils/constants";
 import ResturantTitle from "./ResturantTitle";
 import ResturantMenuListBody from "./ResturantMenuListBody";
 
 const RestaurantMenu = () => {
   const [resMenuData, setResMenuData] = useState([]);
-  const params = useParams();
+  const { resId } = useParams();
+
   useEffect(() => {
     fetchRestaurants();
   }, []);
   const fetchRestaurants = async () => {
-    const response = await fetch(RESTAURANT_MENU_URL);
+    const response = await fetch(RESTAURANT_MENU_URL + "/" + resId);
     const data = await response.json();
     setResMenuData(data?.data?.cards);
   };

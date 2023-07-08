@@ -5,7 +5,7 @@ const CDN_URL =
 const LIVE_DATA_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.752539&lng=83.4363406&page_type=DESKTOP_WEB_LISTING";
 const RESTAURANT_MENU_URL =
-  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.752539&lng=83.4363406&restaurantId=574778";
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.752539&lng=83.4363406&restaurantId=";
 
 module.exports = {
   LOGO_URL: LOGO_URL,

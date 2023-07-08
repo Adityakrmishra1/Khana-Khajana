@@ -1,15 +1,17 @@
 import RestaurantsItem from "./RestaurantsItem";
 import Search from "./Search";
+import _ from "lodash";
 import { useEffect, useState } from "react";
-import { LIVE_DATA_URL } from "../../utils/constants";
+
 import ShimmerUiContainer from "./ShimmerUi";
+import { LIVE_DATA_URL } from "../../utils/constants";
+import { Link } from "react-router-dom";
 
 let Body = function () {
   console.log(useState);
   let [restaurantLists, setRestaurantLists] = useState([]);
   let [filteredRestaurantLists, setFilteredRestaurantLists] = useState([]);
   let [searchText, setSearchText] = useState("");
-  console.log("rendered ");
 
   async function fetchData() {
     try {
@@ -73,8 +75,16 @@ let Body = function () {
       </div>
       <div className="res-container">
         {filteredRestaurantLists.map((item) => {
+          console.log("item");
           console.log(item);
-          return <RestaurantsItem key={item.id} data={item} />;
+          return (
+            <Link
+              key={_.get(item, "data.id", "")}
+              to={"/restaurant/" + _.get(item, "data.id", "")}
+            >
+              <RestaurantsItem data={item} />
+            </Link>
+          );
         })}
       </div>
     </div>
