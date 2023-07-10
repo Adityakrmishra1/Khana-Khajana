@@ -179,18 +179,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* .res-menu-body > * {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-} */
-
-/* .res-menu-body-info-container {
-  width: 80%;
-  height: 200px;
-  background-color: #f7f7fa;
-} */
-
 .res-menu-body-info-container > ul {
   list-style: none;
   font-family: sans-serif;
