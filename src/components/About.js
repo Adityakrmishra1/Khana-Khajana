@@ -1,7 +1,10 @@
+import User from "./User";
+
 const About = function () {
   return (
-    <div>
-      <h1>About</h1>
+    <div className="about-container">
+      <h1> 😎 About Me.. 😎</h1>
+      <User />
     </div>
   );
 };

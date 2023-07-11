@@ -7,9 +7,13 @@ const LIVE_DATA_URL =
 const RESTAURANT_MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.752539&lng=83.4363406&restaurantId=";
 
+const PROFILE_IMAGE_URL =
+  "https://media.licdn.com/dms/image/D4D03AQEvOU2G-Kdk6Q/profile-displayphoto-shrink_800_800/0/1683385132698?e=1694649600&v=beta&t=2WXpx_bfro0CozrleZ6o1J9tn34hn_yV422Ork_hUA8";
+
 module.exports = {
   LOGO_URL: LOGO_URL,
   CDN_URL: CDN_URL,
   LIVE_DATA_URL: LIVE_DATA_URL,
   RESTAURANT_MENU_URL: RESTAURANT_MENU_URL,
+  PROFILE_IMAGE_URL: PROFILE_IMAGE_URL,
 };

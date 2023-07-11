@@ -205,3 +205,31 @@ body {
   font: bold;
   font-weight: 1000;
 }
+
+.user-container {
+  width: 50%;
+  display: flex;
+  border: 1px solid #ccc;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #f5f7fd;
+}
+
+.user-image {
+  margin: 0 auto;
+}
+
+.user-img {
+  width: 20%;
+  height: 35%;
+  border-radius: 20%;
+  flex-direction: row;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+}
