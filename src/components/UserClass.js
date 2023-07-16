@@ -3,15 +3,29 @@ import { Link } from "react-router-dom";
 import { PROFILE_IMAGE_URL } from "../../utils/constants";
 
 class UserClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // count: 0,
+    };
+  }
   render() {
+    const { location, name } = this.props;
     return (
       <div className="user-container">
         <div className="user-card">
-          <h2>Aditya Mishra</h2>
-          <h3>Location : Gorakhpur 🌍</h3>
+          <h2>{name}</h2>
+          {/* <button
+            onClick={() => {
+              this.setState({ count: this.state.count + 1 });
+            }}
+          >
+            {this.state.count}
+          </button> */}
+          <h3>Location : {location} 🌍</h3>
           <p>
-            Hi, I'm Aditya and I'm currently working as MTS (Member of
-            Teachnincal Staff) at a fintech Firm. It's nice meeting you.
+            Hello, I'm Aditya and I'm currently working as MTS (Member of
+            Teachnincal Staff) at a fintech Firm.
           </p>
           <h4>
             Contact :{" "}

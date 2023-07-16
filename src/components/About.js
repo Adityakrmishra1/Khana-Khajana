@@ -6,7 +6,7 @@ const About = function () {
     <div className="about-container">
       <h1> 😎 About Me.. 😎</h1>
       <User />
-      <UserClass />
+      <UserClass name={"Aditya Mishra"} location={"Gorakhpur, Uttar Pradesh"} />
     </div>
   );
 };
