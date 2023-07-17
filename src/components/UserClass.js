@@ -15,13 +15,6 @@ class UserClass extends React.Component {
       <div className="user-container">
         <div className="user-card">
           <h2>{name}</h2>
-          {/* <button
-            onClick={() => {
-              this.setState({ count: this.state.count + 1 });
-            }}
-          >
-            {this.state.count}
-          </button> */}
           <h3>Location : {location} 🌍</h3>
           <p>
             Hello, I'm Aditya and I'm currently working as MTS (Member of
@@ -30,7 +23,6 @@ class UserClass extends React.Component {
           <h4>
             Contact :{" "}
             <Link to="https://www.linkedin.com/in/aditya-kumar-mishra-62799b190/">
-              {" "}
               @nopeace
             </Link>
           </h4>
