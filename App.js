@@ -1,11 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 // getting Components...
-import Header from "./utils/Header";
+import Header from "./src/components/Header";
 import Body from "./src/components/Body";
-import About from "./src/components/About";
+// import About from "./src/components/About";
 import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
 import RestaurantMenu from "./src/components/RestaurantMenu";
@@ -19,6 +19,12 @@ let AppLayoutContainer = function () {
   );
 };
 
+// lazy loading
+// onDemand Loading
+// code splitting dynaimc bundling
+
+const About = lazy(() => import("./src/components/About"));
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +36,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",

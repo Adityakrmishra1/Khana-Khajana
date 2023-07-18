@@ -1,11 +1,11 @@
 import RestaurantsItem from "./RestaurantsItem";
-import Search from "./Search";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 
 import ShimmerUiContainer from "./ShimmerUi";
 import { LIVE_DATA_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 let Body = function () {
   console.log(useState);
@@ -34,6 +34,12 @@ let Body = function () {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const onlineStatus = useOnlineStatus();
+  console.log("online status: " + onlineStatus);
+  if (!onlineStatus) {
+    return <h1>you are offline :( please check your internet status</h1>;
+  }
 
   return !restaurantLists || restaurantLists.length === 0 ? (
     <ShimmerUiContainer />
