@@ -44,17 +44,20 @@ let Body = function () {
   return !restaurantLists || restaurantLists.length === 0 ? (
     <ShimmerUiContainer />
   ) : (
-    <div className="body">
-      <div className="filters">
-        <div className="top-rated-res-container">
-          <button className="top-rated-res-btn" onClick={() => {}}>
-            Top Rated Restaurants
+    <div className="p-3 flex flex-col bg-slate-100 m-10">
+      <div className="flex flex-wrap justify-evenly mb-4">
+        <div className="mt-4">
+          <button
+            className="border-slate-950 bg-green-200 hover:bg-sky-400 p-2 rounded-md text-sm text-slate-800 shadow-xl"
+            onClick={() => {}}
+          >
+            Top Rated
           </button>
         </div>
-        <div className="search-container">
+        <div className="">
           <input
             type="text"
-            className="search-box"
+            className="p-1 px-4 border border-slate-800 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
             placeholder="Search Restaurants"
             value={searchText}
             onChange={(e) => {
@@ -62,7 +65,7 @@ let Body = function () {
             }}
           />
           <button
-            className="serch-btn"
+            className="bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
             onClick={(e) => {
               e.preventDefault();
               console.log(restaurantLists);
@@ -79,10 +82,9 @@ let Body = function () {
           </button>
         </div>
       </div>
-      <div className="res-container">
+
+      <div className="flex flex-wrap gap-2 justify-between">
         {filteredRestaurantLists.map((item) => {
-          console.log("item");
-          console.log(item);
           return (
             <Link
               key={_.get(item, "data.id", "")}

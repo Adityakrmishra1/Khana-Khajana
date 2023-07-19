@@ -12,24 +12,27 @@ let RestaurantsItem = function (props) {
 
   cuisines = cuisines.join(", ");
   return (
-    <div className="res-card-box" onMouseOver={() => {}}>
+    <div
+      className="p-4 w-96 border border-solid bg-fuchsia-100 "
+      onMouseOver={() => {}}
+    >
       <div className="res-item">
-        <img src={CDN_URL + cloudinaryImageId} />
-        <h4 className="res-item-title"> {name} </h4>
-        <h5 className="res-item-cusine"> {cuisines} </h5>
-        <div className="res-other-details">
-          <span className="res-item-rating">
-            <span className="star">&#9733;</span> {avgRating}
-          </span>
-          <div className="res-item-seperator">.</div>
-          <span className="res-item-eta"> {deliveryTime} Minutes </span>
-          <div className="res-item-seperator">.</div>
-          <span> ₹{costForTwo / 100} For Two</span>
+        <img classname="w-64" src={CDN_URL + cloudinaryImageId} />
+        <h4 className="font-semibold mt-2 w"> {name} </h4>
+        <h5 className="font-extralight text-xs my-2"> {cuisines} </h5>
+        <div className="flex flex-wrap  text-sm justify-between my-2 font-sans">
+          <div className="font-light border w-10 p-1 text-xs bg-green-500 text-slate-100">
+            <span>&#9733;</span> {avgRating}
+          </div>
+          <div className="font-light ">.</div>
+          <span className="font-light my-1"> {deliveryTime} Minutes </span>
+          <div className="font-light ">.</div>
+          <span className="font-light"> ₹{costForTwo / 100} For Two</span>
         </div>
-        <div className="res-item-quick-view">
-          <hr className="res-item-quick-view-hr"></hr>
-          <h5 className="res-item-quick-view-title">QUICK VIEW</h5>
-        </div>
+        {/* <div>
+          <hr className="my-2"></hr>
+          <h5 className="flex justify-evenly p-1 my-2">QUICK VIEW</h5>
+        </div> */}
       </div>
     </div>
   );
