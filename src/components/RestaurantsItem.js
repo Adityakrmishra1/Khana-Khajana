@@ -12,13 +12,10 @@ let RestaurantsItem = function (props) {
 
   cuisines = cuisines.join(", ");
   return (
-    <div
-      className="p-4 w-96 border border-solid bg-fuchsia-100 "
-      onMouseOver={() => {}}
-    >
+    <div className="p-4 mb-4 w-96 border border-solid bg-fuchsia-100 shadow-2xl hover:bg-cyan-100">
       <div className="res-item">
-        <img classname="w-64" src={CDN_URL + cloudinaryImageId} />
-        <h4 className="font-semibold mt-2 w"> {name} </h4>
+        <img className="w-64" src={CDN_URL + cloudinaryImageId} />
+        <h4 className="font-bold my-1 text-sm"> {name} </h4>
         <h5 className="font-extralight text-xs my-2"> {cuisines} </h5>
         <div className="flex flex-wrap  text-sm justify-between my-2 font-sans">
           <div className="font-light border w-10 p-1 text-xs bg-green-500 text-slate-100">

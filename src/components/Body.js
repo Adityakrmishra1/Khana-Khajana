@@ -44,7 +44,7 @@ let Body = function () {
   return !restaurantLists || restaurantLists.length === 0 ? (
     <ShimmerUiContainer />
   ) : (
-    <div className="p-3 flex flex-col bg-slate-100 m-10">
+    <div className="p-5 flex flex-col bg-slate-100 m-10">
       <div className="flex flex-wrap justify-evenly mb-4">
         <div className="mt-4">
           <button

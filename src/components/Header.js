@@ -14,18 +14,20 @@ const Header = function () {
       </div>
       <div>
         <ul className="flex m-4 p-3 flex-wrap mx-3 font-normal">
-          <li> {onlineStatus ? "Online ✅" : "Offline 🟥"}</li>
-          <li className="mx-3">
+          <li className="mx-3 p-2 hover:bg-cyan-100 rounded-xl">
+            {onlineStatus ? "Online ✅" : "Offline 🟥"}
+          </li>
+          <li className="mx-5 p-2 hover:bg-cyan-100">
             <Link to="/">Home</Link>
           </li>
-          <li className="mx-3">
+          <li className="mx-3 p-2 hover:bg-cyan-100">
             <Link to="/about">About</Link>
           </li>
-          <li className="mx-3">
+          <li className="mx-3 p-2 hover:bg-cyan-100">
             <Link to="/contact">Contact Us</Link>
           </li>
           <button
-            className="mx-3"
+            className="mx-3 p-2 hover:bg-cyan-100"
             onClick={() => {
               console.log(btnNameReact);
               btnNameReact == "Logout"

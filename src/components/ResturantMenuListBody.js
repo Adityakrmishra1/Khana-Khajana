@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { CDN_URL } from "../../utils/constants";
 
@@ -9,29 +9,48 @@ const ResturantMenuListBody = (props) => {
     []
   );
 
+  let [resLists, setResList] = useState(allCards);
+
   return (
-    <div className="res-menu-body">
-      <div className="res-menu-body-filters">
-        <button className="is-vegetarian">Veg</button>
+    <div className="mx-20">
+      <div className="flex justify-evenly m-3">
+        <button
+          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
+          onClick={() => {
+            let filteredVegItems = _.filter(allCards, (card) => {
+              console.log(card);
+              return card.info.isVeg === 1;
+            });
+            setResList(filteredVegItems);
+          }}
+        >
+          Veg
+        </button>
       </div>
-      <div className="res-menu-body-info-container">
-        <ul>
-          {allCards.map((card) => {
+      <div className="flex flex-col gap-1 mt-10">
+        <ul className="flex flex-wrap flex-col justify-between">
+          {resLists.map((card) => {
             return (
               <>
-                <div className="res-menu-item-container">
-                  <div key={card.card.info.id} className="res-menu-item-info">
-                    <h3 classname="res-menu-item-info-name">
+                <div className="flex justify-between mx-56">
+                  <div
+                    key={card.card.info.id}
+                    className="text-sm text-slate-800 p-20 m-10"
+                  >
+                    <h3 className="font-extrabold text-lg">
                       {_.get(card, "card.info.name", "")}
                     </h3>
-                    <li classname="res-menu-item-info-description">
+                    <li className="font-lg">
                       {_.get(card, "card.info.description", "")}
                     </li>
-                    <li classname="res-menu-item-info-price">
+                    <li className="res-menu-item-info-price">
                       ₹{_.get(card, "card.info.price", "") / 100}
                     </li>
                   </div>
-                  <img src={CDN_URL + "/" + card.card.info.imageId} />
+                  <img
+                    className="w-80 h-40 mt-16"
+                    src={CDN_URL + "/" + card.card.info.imageId}
+                  />
                 </div>
                 <hr></hr>
               </>
