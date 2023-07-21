@@ -8,8 +8,8 @@ const ResturantMenuListBody = (props) => {
     "props.groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards",
     []
   );
-
-  let [resLists, setResList] = useState(allCards);
+  let [orgResList, setOrgResList] = useState(allcards);
+  let [resLists, setResList] = useState([]);
 
   return (
     <div className="mx-20">
@@ -18,13 +18,31 @@ const ResturantMenuListBody = (props) => {
           className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
           onClick={() => {
             let filteredVegItems = _.filter(allCards, (card) => {
-              console.log(card);
-              return card.info.isVeg === 1;
+              return _.get(card, "card.info.isVeg", 0) === 1;
             });
             setResList(filteredVegItems);
           }}
         >
           Veg
+        </button>
+        <button
+          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
+          onClick={() => {
+            let filteredVegItems = _.filter(allCards, (card) => {
+              return _.get(card, "card.info.isVeg", 0) === 1;
+            });
+            setResList(filteredVegItems);
+          }}
+        >
+          Non-veg
+        </button>
+        <button
+          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
+          onClick={() => {
+            setResList(filteredVegItems);
+          }}
+        >
+          All
         </button>
       </div>
       <div className="flex flex-col gap-1 mt-10">
