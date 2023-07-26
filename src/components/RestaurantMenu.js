@@ -9,11 +9,9 @@ const RestaurantMenu = () => {
 
   const resMenuData = useRestaurantMenu(resId);
   // console.log(resMenuData);
-
   return (
     <div className="res-menu-container">
-      {/* <ResturantTitle props={resMenuData[0]} /> */}
-      <ResturantMenuListBody props={resMenuData?.[2]} />
+      <ResturantMenuListBody props={resMenuData} />
     </div>
   );
 };

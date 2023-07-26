@@ -1,11 +1,16 @@
-import RestaurantsItem from "./RestaurantsItem";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 
+import RestaurantsItem, { withPromotedLable } from "./RestaurantsItem";
 import ShimmerUiContainer from "./ShimmerUi";
 import { LIVE_DATA_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+
+
+//higher order functions
+
+const ResturantCardPromoted = withPromotedLable(RestaurantsItem);
 
 let Body = function () {
   console.log(useState);
@@ -36,7 +41,6 @@ let Body = function () {
   }, []);
 
   const onlineStatus = useOnlineStatus();
-  console.log("online status: " + onlineStatus);
   if (!onlineStatus) {
     return <h1>you are offline :( please check your internet status</h1>;
   }
@@ -68,7 +72,7 @@ let Body = function () {
             className="bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
             onClick={(e) => {
               e.preventDefault();
-              console.log(restaurantLists);
+              // console.log(restaurantLists);
               const filterdResturant = restaurantLists.filter((res) => {
                 console.log(res);
                 return res?.data?.name
@@ -90,7 +94,11 @@ let Body = function () {
               key={_.get(item, "data.id", "")}
               to={"/restaurant/" + _.get(item, "data.id", "")}
             >
-              <RestaurantsItem data={item} />
+              {_.get(item, "data.promoted", false) ? (
+                <ResturantCardPromoted data={item} />
+              ) : (
+                <RestaurantsItem data={item} />
+              )}
             </Link>
           );
         })}

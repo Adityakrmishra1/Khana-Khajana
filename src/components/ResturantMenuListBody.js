@@ -1,81 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import RestaurantCateogry from "./RestaurantCateogry";
 import _ from "lodash";
 import { CDN_URL } from "../../utils/constants";
 
 const ResturantMenuListBody = (props) => {
-  let allCards = _.get(
-    props,
-    "props.groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards",
+  console.log(props.props);
+
+  let resturantDetails = props?.props?.[0]?.card?.card?.info;
+  let { name, cuisines, costForTwo, avgRating } = resturantDetails || {};
+  let cards = _.get(
+    props?.props?.[2],
+    "groupedCard.cardGroupMap.REGULAR.cards",
     []
   );
-  let [orgResList, setOrgResList] = useState(allcards);
-  let [resLists, setResList] = useState([]);
 
+  let categories = cards?.filter((c) =>
+    c.card.card["@type"].includes("food.v2.ItemCategory")
+  );
+  if (!_.size(categories)) {
+    return (
+      <h1 className="text-center mt-80 p-4 font-semibold text-lg">
+        Loading ...
+      </h1>
+    );
+  }
   return (
-    <div className="mx-20">
-      <div className="flex justify-evenly m-3">
-        <button
-          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
-          onClick={() => {
-            let filteredVegItems = _.filter(allCards, (card) => {
-              return _.get(card, "card.info.isVeg", 0) === 1;
-            });
-            setResList(filteredVegItems);
-          }}
-        >
-          Veg
-        </button>
-        <button
-          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
-          onClick={() => {
-            let filteredVegItems = _.filter(allCards, (card) => {
-              return _.get(card, "card.info.isVeg", 0) === 1;
-            });
-            setResList(filteredVegItems);
-          }}
-        >
-          Non-veg
-        </button>
-        <button
-          className="border px-6 py-2 mt-4 bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
-          onClick={() => {
-            setResList(filteredVegItems);
-          }}
-        >
-          All
-        </button>
+    <div className="text-center mt-10">
+      <h1 className="text-2xl font-semibold p-2">{name}</h1>
+      <h3 className="text-lg">{cuisines.join(", ")}</h3>
+      {/* <h3 className="text-lg"> cost for 2 ₹ {costForTwo / 100}</h3> */}
+      <div className="mt-3 text-xs font-semibold border w-14 p-2  bg-green-500 text-white m-auto rounded-xl">
+        {avgRating} <span>&#9733;</span>
       </div>
-      <div className="flex flex-col gap-1 mt-10">
-        <ul className="flex flex-wrap flex-col justify-between">
-          {resLists.map((card) => {
-            return (
-              <>
-                <div className="flex justify-between mx-56">
-                  <div
-                    key={card.card.info.id}
-                    className="text-sm text-slate-800 p-20 m-10"
-                  >
-                    <h3 className="font-extrabold text-lg">
-                      {_.get(card, "card.info.name", "")}
-                    </h3>
-                    <li className="font-lg">
-                      {_.get(card, "card.info.description", "")}
-                    </li>
-                    <li className="res-menu-item-info-price">
-                      ₹{_.get(card, "card.info.price", "") / 100}
-                    </li>
-                  </div>
-                  <img
-                    className="w-80 h-40 mt-16"
-                    src={CDN_URL + "/" + card.card.info.imageId}
-                  />
-                </div>
-                <hr></hr>
-              </>
-            );
-          })}
-        </ul>
-      </div>
+      {categories.map((c) => {
+        return <RestaurantCateogry cateogryData={c} />;
+      })}
     </div>
   );
 };
