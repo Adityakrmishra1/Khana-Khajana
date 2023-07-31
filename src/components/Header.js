@@ -7,9 +7,9 @@ const Header = function () {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="flex justify-between bg-slate-100 shadow-xl mb-4">
+    <div className="flex justify-between bg-slate-100 shadow-xl mb-2 mt-0 pt-0">
       <div className="flex flex-wrap-reverse justify-around">
-        <img className="w-20 ml-2" src={LOGO_URL} />
+        <img className="mt-0 absolutew-16 h-20 ml-2" src={LOGO_URL} />
         <h3 className="mt-10 mx-2">{COMPANY_NAME}</h3>
       </div>
       <div>
