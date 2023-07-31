@@ -29,7 +29,7 @@ const Header = function () {
           <button
             className="mx-3 p-2 hover:bg-cyan-100"
             onClick={() => {
-              console.log(btnNameReact);
+              // console.log(btnNameReact);
               btnNameReact == "Logout"
                 ? setBtnNameReact("Login")
                 : setBtnNameReact("Logout");

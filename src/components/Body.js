@@ -13,7 +13,7 @@ import useOnlineStatus from "../../utils/useOnlineStatus";
 const ResturantCardPromoted = withPromotedLable(RestaurantsItem);
 
 let Body = function () {
-  console.log(useState);
+  // console.log(useState);
   let [restaurantLists, setRestaurantLists] = useState([]);
   let [filteredRestaurantLists, setFilteredRestaurantLists] = useState([]);
   let [searchText, setSearchText] = useState("");
@@ -22,12 +22,15 @@ let Body = function () {
     try {
       let data = await fetch(LIVE_DATA_URL);
       let json = await data.json();
-      console.log(json);
       let cardData = json?.data?.cards;
       cardData = cardData.filter(
-        (card) => card.cardType === "seeAllRestaurants"
+        (c) => {
+          // console.log(c.card.card.id);
+          return c.card.card.id === "restaurant_grid_listing";
+        }
       );
-      cardData = cardData[0]?.data?.data?.cards;
+      cardData = cardData?.[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      // cardData = cardData[0]?.data?.data?.cards;
       setRestaurantLists(cardData);
       setFilteredRestaurantLists(cardData);
     } catch (error) {
@@ -91,13 +94,13 @@ let Body = function () {
         {filteredRestaurantLists.map((item) => {
           return (
             <Link
-              key={_.get(item, "data.id", "")}
-              to={"/restaurant/" + _.get(item, "data.id", "")}
+              key={_.get(item, "info.id", "")}
+              to={"/restaurant/" + _.get(item, "info.id", "")}
             >
               {_.get(item, "data.promoted", false) ? (
-                <ResturantCardPromoted data={item} />
+                <ResturantCardPromoted data={item?.info} key={item?.info?.id}/>
               ) : (
-                <RestaurantsItem data={item} />
+                <RestaurantsItem data={item?.info} key={item?.info?.id} />
               )}
             </Link>
           );

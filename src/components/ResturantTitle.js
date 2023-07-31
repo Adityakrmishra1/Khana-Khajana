@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 
 function ResturantTitle(props) {
-  console.log(props);
+  // console.log(props);
   let {
     name,
     locality,

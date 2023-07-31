@@ -4,11 +4,11 @@ let RestaurantsItem = function (props) {
   let {
     name,
     avgRating,
-    deliveryTime,
+    sla,
     cuisines,
     cloudinaryImageId,
     costForTwo,
-  } = props.data.data;
+  } = props?.data;
 
   cuisines = cuisines.join(", ");
   return (
@@ -22,9 +22,9 @@ let RestaurantsItem = function (props) {
             <span>&#9733;</span> {avgRating}
           </div>
           <div className="font-light ">.</div>
-          <span className="font-light my-1"> {deliveryTime} Minutes </span>
+          <span className="font-light my-1"> {sla.deliveryTime} Minutes </span>
           <div className="font-light ">.</div>
-          <span className="font-light"> ₹{costForTwo / 100} For Two</span>
+          <span className="font-light"> {costForTwo}</span>
         </div>
         {/* <div>
           <hr className="my-2"></hr>
@@ -35,8 +35,10 @@ let RestaurantsItem = function (props) {
   );
 };
 
+//higher order components.
 export const withPromotedLable = (RestaurantsItem) => {
   return (props) => {
+    // console.log(props);
     return (
       <div>
         <label className="absolute bg-black text-white m-2 p-2 rounded-lg accent-transparent">

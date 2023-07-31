@@ -4,7 +4,7 @@ import _ from "lodash";
 import { CDN_URL } from "../../utils/constants";
 
 const ResturantMenuListBody = (props) => {
-  console.log(props.props);
+  // console.log(props.props);
 
   let resturantDetails = props?.props?.[0]?.card?.card?.info;
   let { name, cuisines, costForTwo, avgRating } = resturantDetails || {};
