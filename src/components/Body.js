@@ -83,7 +83,7 @@ let Body = function () {
             onClick={(e) => {
               e.preventDefault();
               const filterdResturant = restaurantLists.filter((res) => {
-                console.log(res);
+                // console.log(res);
                 return res?.info?.name
                   ?.toLowerCase()
                   ?.includes(searchText?.toLowerCase());
