@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import RestaurantsItem, { withPromotedLable } from "./RestaurantsItem";
 import ShimmerUiContainer from "./ShimmerUi";
-import { LIVE_DATA_URL } from "../../utils/constants";
+import { LIVE_DATA_URL, TOP_RATE_RATING } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
 
@@ -56,7 +56,14 @@ let Body = function () {
         <div className="mt-4">
           <button
             className="border-slate-950 bg-green-200 hover:bg-sky-400 p-2 rounded-md text-sm text-slate-800 shadow-xl"
-            onClick={() => {}}
+            onClick={(e) => {
+               e.preventDefault();
+              const filterdResturant = restaurantLists.filter((res) => {
+                console.log(res);
+                return +res?.info?.avgRatingString >= TOP_RATE_RATING;
+              });
+              setFilteredRestaurantLists(filterdResturant);
+            }}
           >
             Top Rated
           </button>
@@ -75,10 +82,9 @@ let Body = function () {
             className="bg-green-200 hover:bg-sky-400 p-2 m-4 rounded-md text-sm text-slate-800"
             onClick={(e) => {
               e.preventDefault();
-              // console.log(restaurantLists);
               const filterdResturant = restaurantLists.filter((res) => {
                 console.log(res);
-                return res?.data?.name
+                return res?.info?.name
                   ?.toLowerCase()
                   ?.includes(searchText?.toLowerCase());
               });
